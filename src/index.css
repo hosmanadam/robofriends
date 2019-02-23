@@ -38,3 +38,10 @@ code {
 input {
   background-color: #F4FFFA;
 }
+
+.stick {
+  position: sticky;
+  background: inherit;
+  top: 0;
+  z-index: 1;
+}
