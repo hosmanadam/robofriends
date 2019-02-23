@@ -1,3 +1,24 @@
+/* Palette URL: http://paletton.com/#uid=3350u0kbAS61m+P6BXQg6JPk9zt */
+
+.color-primary-0 { color: #94E8C8 }	/* Main Primary color */
+.color-primary-1 { color: #F4FFFA }
+.color-primary-2 { color: #C4F7E4 }
+.color-primary-3 { color: #69D3AB }
+.color-primary-4 { color: #43B58A }
+
+.color-secondary-1-0 { color: #FFD9A3 }	/* Main Secondary color (1) */
+.color-secondary-1-1 { color: #FFFBF4 }
+.color-secondary-1-2 { color: #FFE9CB }
+.color-secondary-1-3 { color: #FFCA7F }
+.color-secondary-1-4 { color: #FFBC5E }
+
+.color-secondary-2-0 { color: #F89EB7 }	/* Main Secondary color (2) */
+.color-secondary-2-1 { color: #FFF4F7 }
+.color-secondary-2-2 { color: #FDC9D7 }
+.color-secondary-2-3 { color: #F27899 }
+.color-secondary-2-4 { color: #EA577E }
+
+
 body {
   margin: 0;
   padding: 0;
@@ -6,9 +27,14 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background: linear-gradient(to right, #ea577e, #ffbc5e);
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+
+input {
+  background-color: #F4FFFA;
 }
