@@ -11,3 +11,15 @@ h1 {
   font-weight: 100;
   font-size: 3.5rem;
 }
+
+.error-message {
+  font-family: monospace;
+}
+
+.error-message h2 {
+  font-size: 1.5rem;
+}
+
+.error-message p {
+  font-size: 1.5rem;
+}
