@@ -7,8 +7,12 @@ import App from './App';
 import {searchRobots} from './reducers'
 
 import {Provider} from 'react-redux';
-import {createStore} from 'redux';
-const store = createStore(searchRobots);
+
+import {applyMiddleware, createStore} from 'redux';
+import {createLogger} from 'redux-logger';
+
+const logger = createLogger();
+const store = createStore(searchRobots, applyMiddleware(logger));
 
 ReactDOM.render(
     <Provider store={store}>
