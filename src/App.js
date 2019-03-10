@@ -5,19 +5,16 @@ import './App.css';
 import ErrorBoundary from './ErrorBoundary'
 
 
-
 import {connect} from 'react-redux';
 import {setSearchField} from './actions';
 
 const mapStateToProps = (state) => ({
-    searchField: state.searchField,
+    searchField: state.searchRobots.searchField,
 });
 
 const mapDispatchToProps = (dispatch) => ({
   onSearchChange: (event) => dispatch(setSearchField(event.target.value))
 });
-
-
 
 
 class App extends Component {
