@@ -4,41 +4,44 @@ import SearchBox from "./SearchBox";
 import './App.css';
 import ErrorBoundary from './ErrorBoundary'
 
-
 import {connect} from 'react-redux';
-import {setSearchField} from './actions';
+import {setSearchField, requestRobots} from './actions';
+
 
 const mapStateToProps = (state) => ({
-    searchField: state.searchRobots.searchField,
+  searchField: state.searchRobots.searchField,
+  robots: state.robotData.robots,
+  isPending: state.robotData.isPending,
+  error: state.robotData.error,
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  onSearchChange: (event) => dispatch(setSearchField(event.target.value))
+  onSearchChange: (event) => dispatch(setSearchField(event.target.value)),
+  requestRobots: () => dispatch(requestRobots),
 });
 
 
 class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      robots: [],
-    }
-  }
 
   componentDidMount() {
-    fetch('https://jsonplaceholder.typicode.com/users')
-        .then(response => response.json())
-        .then(users => this.setState({robots: users}));
+    this.props.requestRobots();
   }
 
   render() {
-    const { robots } = this.state;
-    const { searchField, onSearchChange } = this.props;
+    const { searchField, onSearchChange, robots, isPending, error } = this.props;
     const filteredRobots = robots.filter(
         (robot) => robot.name.toLowerCase().includes(searchField.toLowerCase()));
-    if (!robots.length) {
+    if (isPending) {
       return <h1>Loading robots...</h1>
-    } else {
+    }
+    if (error) {
+      return (
+        <div className="error-message">
+          <h2>{`Oops, we got an error: ${error.message}`}</h2>
+          <p>Do try again later!</p>
+        </div>
+      )}
+    else {
       return (
         <div className="tc">
           <h1>RoboFriends</h1>

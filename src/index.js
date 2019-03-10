@@ -5,13 +5,14 @@ import 'tachyons';
 import {applyMiddleware, createStore} from 'redux';
 import {Provider} from 'react-redux';
 import {createLogger} from 'redux-logger';
+import thunk from 'redux-thunk';
 
 import './index.css';
 import App from './App';
 import rootReducer from './reducers/index';
 
 const logger = createLogger();
-const store = createStore(rootReducer, applyMiddleware(logger));
+const store = createStore(rootReducer, applyMiddleware(thunk, logger));
 
 ReactDOM.render(
     <Provider store={store}>
