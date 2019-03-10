@@ -5,38 +5,34 @@ import './App.css';
 import ErrorBoundary from './ErrorBoundary'
 
 
-
 import {connect} from 'react-redux';
-import {setSearchField} from './actions';
+import {setSearchField, setRobotData} from './actions';
 
 const mapStateToProps = (state) => ({
-    searchField: state.searchField,
+  searchField: state.searchField,
+  robots: state.robots,
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  onSearchChange: (event) => dispatch(setSearchField(event.target.value))
+  onSearchChange: (event) => dispatch(setSearchField(event.target.value)),
+  onRobotsDownloaded: (robots) => dispatch(setRobotData(robots))
 });
-
-
 
 
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      robots: [],
-    }
+    this.state = {}
   }
 
   componentDidMount() {
     fetch('https://jsonplaceholder.typicode.com/users')
         .then(response => response.json())
-        .then(users => this.setState({robots: users}));
+        .then(users => this.props.onRobotsDownloaded(users));
   }
 
   render() {
-    const { robots } = this.state;
-    const { searchField, onSearchChange } = this.props;
+    const { searchField, onSearchChange, robots } = this.props;
     const filteredRobots = robots.filter(
         (robot) => robot.name.toLowerCase().includes(searchField.toLowerCase()));
     if (!robots.length) {
